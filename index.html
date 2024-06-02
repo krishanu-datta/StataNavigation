@@ -3,37 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Prediction</title>
+    <title>Image Prediction WebApp</title>
 </head>
 <body>
-    <h1>Upload an Image for Prediction</h1>
+    <h1>Image Prediction WebApp</h1>
     <input type="file" id="imageUpload" accept="image/*">
-    <button onclick="uploadAndPredict()">Upload and Predict</button>
-    <p id="predictionResult"></p>
+    <button onclick="predictImage()">Predict</button>
+    <p id="prediction"></p>
 
-    <script>
-        async function uploadAndPredict() {
-            const input = document.getElementById('imageUpload');
-            if (input.files.length === 0) {
-                alert("Please select an image file first.");
-                return;
-            }
-            const file = input.files[0];
-            const formData = new FormData();
-            formData.append('image', file);
-
-            const response = await fetch('https://your-api-endpoint', {
-                method: 'POST',
-                body: formData
-            });
-            
-            if (response.ok) {
-                const result = await response.json();
-                document.getElementById('predictionResult').innerText = `Predicted class: ${result.prediction}`;
-            } else {
-                alert("Failed to get prediction.");
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
